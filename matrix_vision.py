@@ -2,6 +2,8 @@ import pygame as pg
 import numpy as np
 import pygame.camera
 import sys
+import customtkinter as ctk
+from tkinter import filedialog
 
 class Matrix:
     def __init__(self, app, font_size=8):
@@ -16,10 +18,10 @@ class Matrix:
         self.cols_speed = np.random.randint(1, 500, size=self.SIZE)
         self.prerendered_chars = self.get_prerendered_chars()
 
-        self.image = self.get_image('illuminati.png')
+        self.image = None
 
     def get_frame(self):
-        image = app.cam.get_image()
+        image = self.app.cam.get_image()
         image = pg.transform.scale(image, self.app.RES)
         pixel_array = pg.pixelarray.PixelArray(image)
         return pixel_array
@@ -42,11 +44,11 @@ class Matrix:
         frames = pg.time.get_ticks()
         self.change_chars(frames)
         self.shift_column(frames)
-        if app.option == 1:
+        if self.app.option == 1:
             self.option_one()
-        elif app.option == 2:
+        elif self.app.option == 2:
             self.option_two()
-        elif app.option == 3:
+        elif self.app.option == 3:
             self.option_three()
 
     def shift_column(self, frames):
@@ -64,7 +66,7 @@ class Matrix:
         for y, row in enumerate(self.matrix):
             for x, char in enumerate(row):
                 pos = x * self.FONT_SIZE, y * self.FONT_SIZE
-                char = self.font.render(char, False, (0,170,0))
+                char = self.font.render(char, False, (0, 170, 0))
                 self.app.surface.blit(char, pos)
     
     def option_two(self):
@@ -73,7 +75,7 @@ class Matrix:
                 if char:
                     pos = x * self.FONT_SIZE, y * self.FONT_SIZE
                     try:
-                        pixel_color = self.image[pos[0]][pos[1]] 
+                        pixel_color = self.image[pos[0]][pos[1]]
                         red = pixel_color >> 16 & 255
                         green = pixel_color >> 8 & 255
                         blue = pixel_color & 255
@@ -84,7 +86,7 @@ class Matrix:
                             char.set_alpha(color + 60)
                             self.app.surface.blit(char, pos)
                     except IndexError:
-                        continue  
+                        continue
 
     def option_three(self):
         self.image = self.get_frame()
@@ -102,7 +104,7 @@ class Matrix:
 
 
 class MatrixVision:
-    def __init__(self, option):
+    def __init__(self, option, path_to_file=None):
         self.RES = self.WIDTH, self.HEIGHT = 960, 720
         pg.init()
         self.screen = pg.display.set_mode(self.RES)
@@ -110,11 +112,13 @@ class MatrixVision:
         self.surface = pg.Surface(self.RES)
         self.clock = pg.time.Clock()
         self.matrix = Matrix(self)
-
+        
         pygame.camera.init()
         self.cam = pygame.camera.Camera(pygame.camera.list_cameras()[0])
         self.cam.start()
         self.option = option
+        if option == 2:
+            self.matrix.image = self.matrix.get_image(path_to_file)
 
     def draw(self):
         self.surface.fill(pg.Color('black'))
@@ -137,7 +141,58 @@ class MatrixVision:
             self.clock.tick(30)
 
 
-if __name__ == '__main__':
-    option = int(input("Enter a number: "))
-    app = MatrixVision(option)
+def run_matrix_vision(option, path_to_file=None):
+    app = MatrixVision(option, path_to_file)
     app.run()
+
+
+def open_file_dialog():
+    file_path = filedialog.askopenfilename()
+    return file_path
+
+
+def start_gui():
+    def on_option_select():
+        option = option_var.get()
+        if option == 2:
+            file_path = open_file_dialog()
+            if file_path:
+                root.destroy()
+                run_matrix_vision(option, file_path)
+        elif option == 1 or option == 3:
+            root.destroy()
+            run_matrix_vision(option)
+
+    root = ctk.CTk()
+    root.geometry("500x250")
+    root.iconbitmap("logo.ico")
+    root.title("Matrix Vision by Yashwanth Kumar")
+
+    ctk.set_appearance_mode("dark")
+    ctk.set_default_color_theme("green")
+
+    frame = ctk.CTkFrame(root, width=800, height=600)
+    frame.pack(padx=20, pady=20)
+
+    label = ctk.CTkLabel(frame, text="Choose an option:")
+    label.pack(pady=10)
+
+    option_var = ctk.IntVar()
+
+    option1 = ctk.CTkRadioButton(frame, text="Matrix Fall", variable=option_var, value=1)
+    option1.pack(anchor='w')
+
+    option2 = ctk.CTkRadioButton(frame, text="Image to Matrix Vision", variable=option_var, value=2)
+    option2.pack(anchor='w')
+
+    option3 = ctk.CTkRadioButton(frame, text="Webcam to Matrix Vision", variable=option_var, value=3)
+    option3.pack(anchor='w')
+
+    button = ctk.CTkButton(frame, text="Start", command=on_option_select)
+    button.pack(pady=20)
+
+    root.mainloop()
+
+
+if __name__ == '__main__':
+    start_gui()
