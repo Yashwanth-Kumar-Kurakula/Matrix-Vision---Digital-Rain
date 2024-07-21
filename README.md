@@ -86,51 +86,51 @@ pip install pygame numpy customtkinter
 ### Matrix Vision
 
 **Matrix Fall**
-![Matrix Fall](screenshots/Matrix%20Fall.png)
+![Matrix Fall](Screenshots/Matrix%20Fall.png)
 
 **Image to Matrix Vision 1**
-![Image to Matrix Vision 1](screenshots/Image%20to%20Matrix%20Vision%201.png)
+![Image to Matrix Vision 1](Screenshots/Image%20to%20Matrix%20Vision%201.png)
 
 **Image to Matrix Vision 2**
-![Image to Matrix Vision 2](screenshots/Image%20to%20Matrix%20Vision%202.png)
+![Image to Matrix Vision 2](Screenshots/Image%20to%20Matrix%20Vision%202.png)
 
 **Webcam to Matrix Vision**
-![Webcam to Matrix Vision](screenshots/Webcam%20to%20Matrix%20Vision.png)
+![Webcam to Matrix Vision](Screenshots/Webcam%20to%20Matrix%20Vision.png)
 
 ### Matrix Fall
 
 **Crimson Fury**
-![Crimson Fury](screenshots/Crimson%20Fury.png)
+![Crimson Fury](Screenshots/Crimson%20Fury.png)
 
 **Neon Jungle**
-![Neon Jungle](screenshots/Neon%20Jungle.png)
+![Neon Jungle](Screenshots/Neon%20Jungle.png)
 
 **Cosmic Blue**
-![Cosmic Blue](screenshots/Cosmic%20Blue.png)
+![Cosmic Blue](Screenshots/Cosmic%20Blue.png)
 
 **Aqua Blaze**
-![Aqua Blaze](screenshots/Aqua%20Blaze.png)
+![Aqua Blaze](Screenshots/Aqua%20Blaze.png)
 
 **Misty Meadow**
-![Misty Meadow](screenshots/Misty%20Meadow.png)
+![Misty Meadow](Screenshots/Misty%20Meadow.png)
 
 **Starlit Twilight**
-![Starlit Twilight](screenshots/Starlit%20Twilight.png)
+![Starlit Twilight](Screenshots/Starlit%20Twilight.png)
 
 **Saturated Nebula**
-![Saturated Nebula](screenshots/Saturated%20Nebula.png)
+![Saturated Nebula](Screenshots/Saturated%20Nebula.png)
 
 **Solar Flare**
-![Solar Flare](screenshots/Solar%20Flare.png)
+![Solar Flare](Screenshots/Solar%20Flare.png)
 
 **Ember Mystic**
-![Ember Mystic](screenshots/Ember%20Mystic.png)
+![Ember Mystic](Screenshots/Ember%20Mystic.png)
 
 **Bubblegum Storm**
-![Bubblegum Storm](screenshots/Bubblegum%20Storm.png)
+![Bubblegum Storm](Screenshots/Bubblegum%20Storm.png)
 
 **Nebula Storm**
-![Nebula Storm](screenshots/Nebula%20Storm.png)
+![Nebula Storm](Screenshots/Nebula%20Storm.png)
 
 ## Contributing
 
