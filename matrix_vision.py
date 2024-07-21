@@ -105,7 +105,8 @@ class Matrix:
 
 class MatrixVision:
     def __init__(self, option, path_to_file=None):
-        self.RES = self.WIDTH, self.HEIGHT = 960, 720
+        self.RES = self.WIDTH, self.HEIGHT = 960, 720 # Change the Resolution here 
+        # self.RES = self.WIDTH, self.HEIGHT = 1920, 1080
         pg.init()
         self.screen = pg.display.set_mode(self.RES)
         pg.display.set_caption("Matrix Vision by Yashwanth Kumar")
@@ -164,35 +165,40 @@ def start_gui():
             run_matrix_vision(option)
 
     root = ctk.CTk()
-    root.geometry("500x250")
+    root.geometry("500x400")
     root.iconbitmap("logo.ico")
     root.title("Matrix Vision by Yashwanth Kumar")
 
     ctk.set_appearance_mode("dark")
     ctk.set_default_color_theme("green")
 
-    frame = ctk.CTkFrame(root, width=800, height=600)
-    frame.pack(padx=20, pady=20)
+    frame = ctk.CTkFrame(root)
+    frame.pack(padx=20, pady=20, fill="both", expand=True)
 
-    label = ctk.CTkLabel(frame, text="Choose an option:")
-    label.pack(pady=10)
+    label = ctk.CTkLabel(frame, text="Choose an option:", font=("Arial", 24, "bold"))
+    label.pack(pady=(20, 30))
 
     option_var = ctk.IntVar()
 
-    option1 = ctk.CTkRadioButton(frame, text="Matrix Fall", variable=option_var, value=1)
-    option1.pack(anchor='w')
+    options = [
+        ("Matrix Fall", 1),
+        ("Image to Matrix Vision", 2),
+        ("Webcam to Matrix Vision", 3)
+    ]
 
-    option2 = ctk.CTkRadioButton(frame, text="Image to Matrix Vision", variable=option_var, value=2)
-    option2.pack(anchor='w')
+    for text, value in options:
+        option = ctk.CTkRadioButton(frame, text=text, variable=option_var, value=value, font=("Arial", 14))
+        option.pack(pady=10)
 
-    option3 = ctk.CTkRadioButton(frame, text="Webcam to Matrix Vision", variable=option_var, value=3)
-    option3.pack(anchor='w')
+    button = ctk.CTkButton(frame, text="Start", command=on_option_select, font=("Arial", 16, "bold"))
+    button.pack(pady=(30, 20))
 
-    button = ctk.CTkButton(frame, text="Start", command=on_option_select)
-    button.pack(pady=20)
+    # Center the frame contents
+    frame.pack_configure(anchor="center")
+    for child in frame.winfo_children():
+        child.pack_configure(anchor="center")
 
     root.mainloop()
-
 
 if __name__ == '__main__':
     start_gui()
