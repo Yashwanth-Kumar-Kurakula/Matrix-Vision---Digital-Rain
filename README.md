@@ -49,6 +49,8 @@ pip install pygame numpy customtkinter
 
 ## Usage Instructions
 
+__**Note:** For "Matrix to Image" its is better to use silhoutte images for good output__
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/Yashwanth-Kumar-Kurakula/Matrix-Vision---Digital-Rain.git
